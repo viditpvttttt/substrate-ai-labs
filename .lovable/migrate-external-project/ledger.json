@@ -1,0 +1,14 @@
+{
+  "source": "https://github.com/viditpvttttt/Substrate.Devs-.git",
+  "capabilities": [
+    {"capability":"Multi-page product website","source":"TanStack Start routes","outcome":"Preserve and redesign all routes","status":"planned","next_action":"Migrate source and implement cohesive AI-lab design"},
+    {"capability":"Interactive motion system","source":"Motion, GSAP, Lenis, Skiper-inspired components","outcome":"Preserve selectively and refine","status":"planned","next_action":"Implement restrained premium motion with reduced-motion support"},
+    {"capability":"Gridline product experience","source":"Gridline page and telemetry matrix","outcome":"Rebuild","status":"planned","next_action":"Create a complete interactive Gridline section matching the new system"},
+    {"capability":"Kernel product content","source":"Kernel route","outcome":"Update","status":"planned","next_action":"Position Kernel clearly as a multimodal LLM chatbot"},
+    {"capability":"Uploaded contour reference","source":"Screenshot_2026-09-15_072826.png","outcome":"Recreate as interactive illustration","status":"planned","next_action":"Replace metallic gradient cards with contour-field panels"},
+    {"capability":"Uploaded motion references","source":"Three Instagram HTML captures","outcome":"Use as motion direction only","status":"planned","next_action":"Create original CSS/SVG motion inspired by reflection, drawing, and organic circles"},
+    {"capability":"Footer","source":"SiteChrome footer","outcome":"Update","status":"planned","next_action":"Remove dynamic time/year and add supplied social links"},
+    {"capability":"Data/schema/auth/storage/external providers","source":"Inspection","outcome":"Not present","status":"not_applicable","next_action":"None"},
+    {"capability":"Verification","source":"Local preview","outcome":"Pending","status":"planned","next_action":"Verify all routes on desktop and mobile"}
+  ]
+}
