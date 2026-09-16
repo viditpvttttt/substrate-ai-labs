@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
 import { Link } from "@tanstack/react-router";
+import { Github, Instagram, Linkedin, Youtube } from "lucide-react";
 import { BrandLogo, type BrandVariant } from "@/components/BrandLogo";
 import { FlipText } from "@/components/anim/FlipLink";
 
@@ -60,24 +60,13 @@ export function SiteHeader() {
   );
 }
 
-/** Live local-time readout — a tiny, quiet footer detail. */
-function LocalTime() {
-  const [now, setNow] = useState<string | null>(null);
-  useEffect(() => {
-    const fmt = () =>
-      setNow(
-        new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit", second: "2-digit" }),
-      );
-    fmt();
-    const id = setInterval(fmt, 1000);
-    return () => clearInterval(id);
-  }, []);
-  return (
-    <span className="font-mono text-[0.625rem] uppercase tracking-[0.18em] text-muted-foreground">
-      {now ?? "--:--:--"} — local
-    </span>
-  );
-}
+const socials = [
+  { href: "https://github.com/Substrate-devs", label: "GitHub", icon: Github },
+  { href: "https://www.instagram.com/substrate.devs/", label: "Instagram", icon: Instagram },
+  { href: "https://www.linkedin.com/company/substratedevs", label: "LinkedIn", icon: Linkedin },
+  { href: "https://x.com/Substratedevs", label: "X", text: "X" },
+  { href: "https://www.youtube.com/@Substrate-devs", label: "YouTube", icon: Youtube },
+];
 
 export function SiteFooter() {
   return (
@@ -109,7 +98,16 @@ export function SiteFooter() {
           <p className="text-xs text-muted-foreground">
             © {new Date().getFullYear()} Substrate — Kernel · Folio · Gridline
           </p>
-          <LocalTime />
+          <nav className="flex items-center gap-1" aria-label="Social media">
+            {socials.map((social) => {
+              const Icon = social.icon;
+              return (
+                <a key={social.label} href={social.href} target="_blank" rel="noreferrer" aria-label={social.label} className="social-link">
+                  {Icon ? <Icon className="size-4" /> : <span className="text-xs font-semibold">{social.text}</span>}
+                </a>
+              );
+            })}
+          </nav>
         </div>
       </div>
 
