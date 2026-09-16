@@ -10,33 +10,141 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as FolioRouteImport } from './routes/folio'
+import { Route as GridlineRouteImport } from './routes/gridline'
+import { Route as KernelRouteImport } from './routes/kernel'
+import { Route as LeadershipRouteImport } from './routes/leadership'
+import { Route as StudioRouteImport } from './routes/studio'
+import { Route as ToolsRouteImport } from './routes/tools'
+import { Route as WorkIndexRouteImport } from './routes/work.index'
+import { Route as WorkSlugRouteImport } from './routes/work.$slug'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const FolioRoute = FolioRouteImport.update({
+  id: '/folio',
+  path: '/folio',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const GridlineRoute = GridlineRouteImport.update({
+  id: '/gridline',
+  path: '/gridline',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const KernelRoute = KernelRouteImport.update({
+  id: '/kernel',
+  path: '/kernel',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LeadershipRoute = LeadershipRouteImport.update({
+  id: '/leadership',
+  path: '/leadership',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const StudioRoute = StudioRouteImport.update({
+  id: '/studio',
+  path: '/studio',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ToolsRoute = ToolsRouteImport.update({
+  id: '/tools',
+  path: '/tools',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const WorkIndexRoute = WorkIndexRouteImport.update({
+  id: '/work/',
+  path: '/work/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const WorkSlugRoute = WorkSlugRouteImport.update({
+  id: '/work/$slug',
+  path: '/work/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/folio': typeof FolioRoute
+  '/gridline': typeof GridlineRoute
+  '/kernel': typeof KernelRoute
+  '/leadership': typeof LeadershipRoute
+  '/studio': typeof StudioRoute
+  '/tools': typeof ToolsRoute
+  '/work/$slug': typeof WorkSlugRoute
+  '/work/': typeof WorkIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/folio': typeof FolioRoute
+  '/gridline': typeof GridlineRoute
+  '/kernel': typeof KernelRoute
+  '/leadership': typeof LeadershipRoute
+  '/studio': typeof StudioRoute
+  '/tools': typeof ToolsRoute
+  '/work/$slug': typeof WorkSlugRoute
+  '/work': typeof WorkIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/folio': typeof FolioRoute
+  '/gridline': typeof GridlineRoute
+  '/kernel': typeof KernelRoute
+  '/leadership': typeof LeadershipRoute
+  '/studio': typeof StudioRoute
+  '/tools': typeof ToolsRoute
+  '/work/$slug': typeof WorkSlugRoute
+  '/work/': typeof WorkIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/folio'
+    | '/gridline'
+    | '/kernel'
+    | '/leadership'
+    | '/studio'
+    | '/tools'
+    | '/work/$slug'
+    | '/work/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/folio'
+    | '/gridline'
+    | '/kernel'
+    | '/leadership'
+    | '/studio'
+    | '/tools'
+    | '/work/$slug'
+    | '/work'
+  id:
+    | '__root__'
+    | '/'
+    | '/folio'
+    | '/gridline'
+    | '/kernel'
+    | '/leadership'
+    | '/studio'
+    | '/tools'
+    | '/work/$slug'
+    | '/work/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  FolioRoute: typeof FolioRoute
+  GridlineRoute: typeof GridlineRoute
+  KernelRoute: typeof KernelRoute
+  LeadershipRoute: typeof LeadershipRoute
+  StudioRoute: typeof StudioRoute
+  ToolsRoute: typeof ToolsRoute
+  WorkSlugRoute: typeof WorkSlugRoute
+  WorkIndexRoute: typeof WorkIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +156,75 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/folio': {
+      id: '/folio'
+      path: '/folio'
+      fullPath: '/folio'
+      preLoaderRoute: typeof FolioRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/gridline': {
+      id: '/gridline'
+      path: '/gridline'
+      fullPath: '/gridline'
+      preLoaderRoute: typeof GridlineRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/kernel': {
+      id: '/kernel'
+      path: '/kernel'
+      fullPath: '/kernel'
+      preLoaderRoute: typeof KernelRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/leadership': {
+      id: '/leadership'
+      path: '/leadership'
+      fullPath: '/leadership'
+      preLoaderRoute: typeof LeadershipRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/studio': {
+      id: '/studio'
+      path: '/studio'
+      fullPath: '/studio'
+      preLoaderRoute: typeof StudioRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/tools': {
+      id: '/tools'
+      path: '/tools'
+      fullPath: '/tools'
+      preLoaderRoute: typeof ToolsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/work/': {
+      id: '/work/'
+      path: '/work'
+      fullPath: '/work/'
+      preLoaderRoute: typeof WorkIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/work/$slug': {
+      id: '/work/$slug'
+      path: '/work/$slug'
+      fullPath: '/work/$slug'
+      preLoaderRoute: typeof WorkSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  FolioRoute: FolioRoute,
+  GridlineRoute: GridlineRoute,
+  KernelRoute: KernelRoute,
+  LeadershipRoute: LeadershipRoute,
+  StudioRoute: StudioRoute,
+  ToolsRoute: ToolsRoute,
+  WorkSlugRoute: WorkSlugRoute,
+  WorkIndexRoute: WorkIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
