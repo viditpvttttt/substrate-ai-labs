@@ -42,6 +42,16 @@
   --color-spectral-r: var(--spectral-r);
   --color-spectral-g: var(--spectral-g);
   --color-spectral-b: var(--spectral-b);
+  --color-contour-foreground: var(--contour-foreground);
+  --color-contour-logo: var(--contour-logo);
+  --color-gridline: var(--gridline);
+  --color-gridline-panel: var(--gridline-panel);
+  --color-gridline-soft: var(--gridline-soft);
+  --color-gridline-border: var(--gridline-border);
+  --color-gridline-foreground: var(--gridline-foreground);
+  --color-gridline-muted: var(--gridline-muted);
+  --color-gridline-accent: var(--gridline-accent);
+  --color-gridline-success: var(--gridline-success);
   --font-display: "Cormorant Garamond", Georgia, serif;
   --font-sans: "Karla", ui-sans-serif, system-ui, sans-serif;
   --font-mono: "IBM Plex Mono", ui-monospace, monospace;
@@ -84,6 +94,16 @@
   --spectral-r: oklch(0.72 0.19 22);
   --spectral-g: oklch(0.76 0.15 155);
   --spectral-b: oklch(0.68 0.17 255);
+  --contour-foreground: oklch(0.985 0.004 85);
+  --contour-logo: oklch(0.985 0.004 85 / 84%);
+  --gridline: oklch(0.16 0.008 70);
+  --gridline-panel: oklch(0.19 0.008 70);
+  --gridline-soft: oklch(0.24 0.01 70);
+  --gridline-border: oklch(1 0 0 / 11%);
+  --gridline-foreground: oklch(0.96 0.006 85);
+  --gridline-muted: oklch(0.68 0.012 78);
+  --gridline-accent: oklch(0.72 0.17 55);
+  --gridline-success: oklch(0.73 0.14 155);
 }
 
 .dark {
@@ -129,7 +149,7 @@
   h3 {
     font-family: var(--font-display);
     font-weight: 300;
-    letter-spacing: -0.015em;
+    letter-spacing: 0;
   }
 }
 
@@ -420,14 +440,48 @@
   animation: rise 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
-/* The hero art is intentionally unfiltered so the supplied cloud painting
-   remains crisp across the full viewport. */
-@utility hero-cloudscape {
+.hero-lab {
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--background) 58%, transparent), var(--background)),
+    radial-gradient(ellipse at 50% 12%, color-mix(in oklab, var(--spectral-b) 20%, transparent), transparent 62%);
+}
+
+.hero-field {
   position: absolute;
   inset: 0;
   z-index: -1;
+  overflow: hidden;
   pointer-events: none;
-  background: #6f96a7 url("/hero-clouds.svg") center / cover no-repeat;
+}
+
+.hero-field svg { width: 100%; height: 100%; }
+.hero-field path { fill: none; stroke: color-mix(in oklab, var(--foreground) 48%, transparent); stroke-width: 0.85; }
+.hero-field-scan { position: absolute; inset: 0 auto 0 0; width: 20%; background: linear-gradient(90deg, transparent, color-mix(in oklab, var(--background) 48%, transparent), transparent); filter: blur(22px); }
+
+.social-link {
+  display: inline-flex;
+  width: 2.25rem;
+  height: 2.25rem;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  color: var(--muted-foreground);
+  transition: color 180ms ease, border-color 180ms ease, transform 180ms ease;
+}
+.social-link:hover { color: var(--foreground); border-color: var(--foreground); transform: translateY(-2px); }
+
+.gridline-hero { position: relative; overflow: hidden; border-bottom: 1px solid var(--gridline-border); }
+.gridline-code-grid { position: absolute; inset: 0; opacity: 0.3; background-size: 32px 32px; background-image: linear-gradient(to right, var(--gridline-border) 1px, transparent 1px), linear-gradient(to bottom, var(--gridline-border) 1px, transparent 1px); mask-image: linear-gradient(to bottom, black, transparent 82%); }
+.gridline-window { overflow: hidden; border: 1px solid var(--gridline-border); border-radius: 0.5rem; background: var(--gridline-panel); box-shadow: 0 35px 90px color-mix(in oklab, var(--gridline) 72%, transparent); }
+.gridline-window-bar { display: flex; align-items: center; gap: 0.75rem; border-bottom: 1px solid var(--gridline-border); padding: 0.75rem 1rem; font-family: var(--font-mono); font-size: 0.625rem; color: var(--gridline-muted); }
+.status-dot { width: 0.5rem; height: 0.5rem; border-radius: 999px; background: var(--gridline-success); box-shadow: 0 0 18px var(--gridline-success); }
+.gridline-label { font-family: var(--font-mono); font-size: 0.625rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gridline-muted); }
+.gridline-chip { border: 1px solid var(--gridline-border); border-radius: 999px; padding: 0.25rem 0.55rem; font-family: var(--font-mono); font-size: 0.625rem; color: var(--gridline-accent); }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; transition-duration: 0.01ms !important; }
 }
 
 /* 3D Perspective & Spatial transforms */

@@ -35,7 +35,7 @@ export function SiteHeader() {
             <Link
               key={item.to}
               to={item.to}
-              className="group relative flex items-center gap-1.5 text-sm text-muted-foreground transition-colors duration-300 hover:text-foreground"
+              className={`group relative items-center gap-1.5 text-sm text-muted-foreground transition-colors duration-300 hover:text-foreground ${item.to === "/work" || item.to === "/leadership" ? "hidden lg:flex" : "flex"}`}
               activeProps={{ className: "group relative flex items-center gap-1.5 text-sm text-foreground" }}
             >
               {item.mark && (
@@ -95,9 +95,7 @@ export function SiteFooter() {
           </nav>
         </div>
         <div className="mt-14 flex flex-col gap-3 border-t border-border/60 pt-6 sm:flex-row sm:items-center sm:justify-between">
-          <p className="text-xs text-muted-foreground">
-            © {new Date().getFullYear()} Substrate — Kernel · Folio · Gridline
-          </p>
+          <p className="text-xs text-muted-foreground">Substrate — Kernel · Folio · Gridline</p>
           <nav className="flex items-center gap-1" aria-label="Social media">
             {socials.map((social) => {
               const Icon = social.icon;
