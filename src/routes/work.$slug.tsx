@@ -50,7 +50,7 @@ function WorkDetail() {
   }
 
   const idx = works.findIndex((w) => w.slug === work.slug);
-  const next = works[(idx + 1) % works.length];
+  const next = works[(idx + 1) % works.length] ?? work;
 
   return (
     <motion.div

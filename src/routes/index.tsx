@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { motion } from "motion/react";
 import { Reveal } from "@/components/Reveal";
 import { BrandLogo } from "@/components/BrandLogo";
+import { HeroField } from "@/components/HeroField";
 import { TiltCard } from "@/components/TiltCard";
 import { BoxReveal } from "@/components/anim/BoxReveal";
 import { CountUp } from "@/components/anim/CountUp";
@@ -9,12 +10,8 @@ import { MagneticButton } from "@/components/anim/MagneticButton";
 import { Preloader } from "@/components/anim/Preloader";
 import { RotatingText } from "@/components/anim/RotatingText";
 import { ScrambleText } from "@/components/anim/ScrambleText";
-import { Spotlight } from "@/components/anim/Spotlight";
 import { WordsReveal } from "@/components/anim/WordsReveal";
 import { VanishForm } from "@/components/ui/skiper-ui/skiper56";
-import { Skiper19 } from "@/components/ui/skiper-ui/skiper19";
-import { Skiper31 } from "@/components/ui/skiper-ui/skiper31";
-import { Skiper48 } from "@/components/ui/skiper-ui/skiper48";
 import { GridlineTeaser } from "@/components/gridline/GridlineTeaser";
 import { WorkTile } from "@/components/work/WorkTile";
 import { works } from "@/components/work/workData";
@@ -34,6 +31,8 @@ export const Route = createFileRoute("/")({
         content:
           "A research and product studio for the ambient computer — a multimodal chatbot, an operating surface and a coding agent on one substrate.",
       },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
   component: Index,
@@ -62,10 +61,8 @@ function Index() {
     <>
       <Preloader />
 
-      {/* Hero — the original cloudscape, restored */}
-      <section className="relative isolate overflow-hidden">
-        <div className="hero-cloudscape" aria-hidden="true" />
-        <Spotlight />
+      <section className="hero-lab relative isolate overflow-hidden">
+        <HeroField />
         <div className="relative mx-auto flex min-h-[88svh] max-w-6xl items-center justify-center px-6 py-20">
           <div className="relative z-10 max-w-3xl text-center">
             <motion.div
@@ -88,7 +85,7 @@ function Index() {
               transition={{ duration: 0.8, delay: 0.85, ease: [0.22, 1, 0.36, 1] }}
               className="mx-auto mt-7 max-w-lg text-lg leading-relaxed text-muted-foreground"
             >
-              A research and product studio for the ambient computer — one substrate under{" "}
+              A research and product studio building one shared substrate under{" "}
               <RotatingText
                 words={[
                   "Kernel, the multimodal chatbot",
@@ -196,30 +193,8 @@ function Index() {
         </div>
       </section>
 
-      {/* Surfaces — Skiper48 card carousel */}
-      <section className="relative isolate overflow-hidden">
-        <div className="spectral-field spectral-field-soft" aria-hidden="true" />
-        <div className="relative mx-auto max-w-6xl px-6 py-24 sm:py-28">
-          <Reveal className="text-center">
-            <p className="rule-label">Surfaces</p>
-            <h2 className="mt-5 text-3xl leading-tight text-foreground sm:text-4xl">
-              <BoxReveal>Swipe through what we make</BoxReveal>
-            </h2>
-          </Reveal>
-          <div className="mt-14 flex justify-center">
-            <Skiper48 />
-          </div>
-        </div>
-      </section>
-
       {/* Gridline section */}
       <GridlineTeaser />
-
-      {/* Skiper31 — one substrate, every product */}
-      <Skiper31 />
-
-      {/* Skiper19 — the stroke that follows the scroll */}
-      <Skiper19 />
 
       {/* Closing CTA */}
       <section className="mx-auto max-w-2xl px-6 py-24 text-center sm:py-28">
