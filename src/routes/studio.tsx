@@ -10,13 +10,13 @@ export const Route = createFileRoute("/studio")({
       {
         name: "description",
         content:
-          "Substrate is a research and product studio building Kernel, VOID and Folio on one shared runtime. How we build, and how to reach us.",
+          "Substrate is a research and product studio building Kernel, Folio and Gridline on one shared runtime. How we build, and how to reach us.",
       },
       { property: "og:title", content: "Studio — how Substrate builds" },
       {
         property: "og:description",
         content:
-          "A small research and product studio for the ambient computer: Kernel, VOID and Folio on one substrate.",
+          "A small research and product studio for the ambient computer: Kernel, Folio and Gridline on one substrate.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -29,7 +29,7 @@ const principles = [
   {
     index: "01",
     title: "One substrate",
-    body: "Kernel, VOID and Folio share the same runtime, the same memory, the same notion of context. Nothing is bolted on afterwards.",
+    body: "Kernel, Folio and Gridline share the same runtime, the same memory, the same notion of context. Nothing is bolted on afterwards.",
   },
   {
     index: "02",
@@ -61,15 +61,15 @@ const principles = [
 const faqs = [
   {
     q: "What is the substrate?",
-    a: "It is the shared runtime underneath all four products: one model, one memory, one notion of context. Kernel, VOID, Folio and Gridline are surfaces on top of it — they inherit everything the layer below already knows.",
+    a: "It is the shared runtime underneath all three products: one model, one memory, one notion of context. Kernel, Folio and Gridline are surfaces on top of it — they inherit everything the layer below already knows.",
   },
   {
     q: "Why build a model, a browser, an editor and a surface together?",
-    a: "Because the interesting problems live in the joins. A browser that assumes a model is nearby behaves differently from one that treats it as a plugin. Building all four on one runtime lets us solve the join once, properly.",
+    a: "Because the interesting problems live in the joins. A work surface that assumes a model is nearby behaves differently from one that treats it as a plugin. Building all three on one runtime lets us solve the join once, properly.",
   },
   {
     q: "Can I use one product without the others?",
-    a: "Yes. Each surface stands on its own. They only get better together: Gridline inherits the same AST lattice Arcadia uses, and VOID can read anything Kernel has already seen.",
+    a: "Yes. Each surface stands on its own. They get better together: Gridline can use Kernel's multimodal reasoning, while Folio shares the same readable memory layer.",
   },
   {
     q: "How do you handle my data?",

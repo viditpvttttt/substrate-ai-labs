@@ -11,9 +11,16 @@ import { BrandLogo } from "@/components/BrandLogo";
 import { getWork, works } from "@/components/work/workData";
 
 export const Route = createFileRoute("/work/$slug")({
-  head: () => ({
-    meta: [{ title: "Work — Substrate" }],
-  }),
+  head: ({ params }) => {
+    const work = getWork(params.slug);
+    const title = work ? `${work.name} — Substrate work` : "Work — Substrate";
+    const description = work?.lede ?? "A detailed look at the products Substrate is building.";
+    return { meta: [
+      { title }, { name: "description", content: description },
+      { property: "og:title", content: title }, { property: "og:description", content: description },
+      { property: "og:type", content: "website" }, { name: "twitter:card", content: "summary_large_image" },
+    ] };
+  },
   component: WorkDetail,
 });
 
@@ -185,7 +192,7 @@ function WorkDetail() {
               <Reveal key={g.title} delay={i * 0.08} className="h-full">
                 <TiltCard className="h-full">
                   <div
-                    className="tile-aurora flex h-full min-h-[16rem] flex-col justify-between rounded-3xl p-8 shadow-lg"
+                    className="tile-aurora flex h-full min-h-[16rem] flex-col justify-between rounded-2xl p-8 shadow-lg"
                     style={
                       {
                         "--tile-a": work.colors.a,
@@ -194,12 +201,12 @@ function WorkDetail() {
                       } as React.CSSProperties
                     }
                   >
-                    <p className="font-mono text-[0.625rem] uppercase tracking-[0.18em] text-white/70">
+                    <p className="font-mono text-[0.625rem] uppercase tracking-[0.18em] text-contour-foreground/70">
                       0{i + 1}
                     </p>
                     <div>
-                      <h3 className="text-2xl text-white drop-shadow-sm">{g.title}</h3>
-                      <p className="mt-2 text-sm leading-relaxed text-white/85">{g.caption}</p>
+                      <h3 className="text-2xl text-contour-foreground drop-shadow-sm">{g.title}</h3>
+                      <p className="mt-2 text-sm leading-relaxed text-contour-foreground/85">{g.caption}</p>
                     </div>
                   </div>
                 </TiltCard>

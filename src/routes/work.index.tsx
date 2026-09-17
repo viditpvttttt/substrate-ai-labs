@@ -22,6 +22,8 @@ export const Route = createFileRoute("/work/")({
         property: "og:description",
         content: "Deep dives into Kernel, Folio and Gridline — one substrate underneath.",
       },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
   component: WorkIndex,
