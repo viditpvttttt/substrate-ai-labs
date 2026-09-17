@@ -38,7 +38,7 @@ const specs = [
   { k: "Shape", v: "Dense decoder with a shared multimodal encoder" },
   { k: "Context", v: "Long-context window, unified across modalities" },
   { k: "Inference", v: "Local first, remote compute as an option" },
-  { k: "Interfaces", v: "Native runtime, HTTP API, VOID integration" },
+  { k: "Interfaces", v: "Chat surface, native runtime, HTTP API, Gridline integration" },
   { k: "Tooling", v: "Structured output, tool calls, streaming" },
   { k: "Status", v: "In training — research preview with partners" },
 ];

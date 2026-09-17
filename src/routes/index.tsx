@@ -7,7 +7,6 @@ import { TiltCard } from "@/components/TiltCard";
 import { BoxReveal } from "@/components/anim/BoxReveal";
 import { CountUp } from "@/components/anim/CountUp";
 import { MagneticButton } from "@/components/anim/MagneticButton";
-import { Preloader } from "@/components/anim/Preloader";
 import { RotatingText } from "@/components/anim/RotatingText";
 import { ScrambleText } from "@/components/anim/ScrambleText";
 import { WordsReveal } from "@/components/anim/WordsReveal";
@@ -59,8 +58,6 @@ const stats = [
 function Index() {
   return (
     <>
-      <Preloader />
-
       <section className="hero-lab relative isolate overflow-hidden">
         <HeroField />
         <div className="relative mx-auto flex min-h-[88svh] max-w-6xl items-center justify-center px-6 py-20">
