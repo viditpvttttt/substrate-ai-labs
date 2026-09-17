@@ -1,7 +1,9 @@
+import { useState } from "react";
 import { Link } from "@tanstack/react-router";
-import { Github, Instagram, Linkedin, Youtube } from "lucide-react";
+import { Github, Instagram, Linkedin, Menu, X, Youtube } from "lucide-react";
 import { BrandLogo, type BrandVariant } from "@/components/BrandLogo";
 import { FlipText } from "@/components/anim/FlipLink";
+import { Button } from "@/components/ui/button";
 
 const nav: { to: string; label: string; mark?: BrandVariant }[] = [
   { to: "/kernel", label: "Kernel", mark: "kernel" },
@@ -13,6 +15,8 @@ const nav: { to: string; label: string; mark?: BrandVariant }[] = [
 ];
 
 export function SiteHeader() {
+  const [open, setOpen] = useState(false);
+
   return (
     <header className="sticky top-0 z-40 w-full border-b border-border/60 bg-background/70 backdrop-blur-xl">
       <div
@@ -30,12 +34,12 @@ export function SiteHeader() {
           />
           <span className="rule-label !text-foreground">Substrate</span>
         </Link>
-        <nav className="flex items-center gap-4 sm:gap-6">
+        <nav className="hidden items-center gap-4 md:flex lg:gap-6">
           {nav.map((item) => (
             <Link
               key={item.to}
               to={item.to}
-              className={`group relative items-center gap-1.5 text-sm text-muted-foreground transition-colors duration-300 hover:text-foreground ${item.to === "/work" || item.to === "/leadership" ? "hidden lg:flex" : "flex"}`}
+              className="group relative flex items-center gap-1.5 text-sm text-muted-foreground transition-colors duration-300 hover:text-foreground"
               activeProps={{ className: "group relative flex items-center gap-1.5 text-sm text-foreground" }}
             >
               {item.mark && (
@@ -55,7 +59,34 @@ export function SiteHeader() {
             </Link>
           ))}
         </nav>
+        <Button
+          variant="ghost"
+          size="icon"
+          className="md:hidden"
+          aria-label={open ? "Close menu" : "Open menu"}
+          aria-expanded={open}
+          onClick={() => setOpen((value) => !value)}
+        >
+          {open ? <X /> : <Menu />}
+        </Button>
       </div>
+      {open && (
+        <nav className="border-t border-border/60 bg-background px-6 py-4 md:hidden" aria-label="Mobile navigation">
+          <div className="grid grid-cols-2 gap-2">
+            {nav.map((item) => (
+              <Link
+                key={item.to}
+                to={item.to}
+                onClick={() => setOpen(false)}
+                className="flex min-h-11 items-center gap-2 border-b border-border/60 px-2 text-sm text-muted-foreground transition-colors hover:text-foreground"
+              >
+                {item.mark && <BrandLogo variant={item.mark} alt="" className="size-4 object-contain" />}
+                {item.label}
+              </Link>
+            ))}
+          </div>
+        </nav>
+      )}
     </header>
   );
 }
