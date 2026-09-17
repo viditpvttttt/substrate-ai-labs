@@ -21,13 +21,13 @@ export const Route = createFileRoute("/leadership")({
       {
         name: "description",
         content:
-          "Meet the founder and CEO of Substrate, the research and product studio building Kernel, VOID, and Folio on one shared runtime.",
+          "Meet the founder and CEO of Substrate, the research and product studio building Kernel, Folio, and Gridline on one shared runtime.",
       },
       { property: "og:title", content: "Leadership — Substrate" },
       {
         property: "og:description",
         content:
-          "The founder and CEO of Substrate — a research and product studio building Kernel, VOID, and Folio on one shared runtime.",
+          "The founder and CEO of Substrate — a research and product studio building Kernel, Folio, and Gridline on one shared runtime.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -37,7 +37,7 @@ export const Route = createFileRoute("/leadership")({
 });
 
 const stats = [
-  { value: 3, suffix: "", label: "Products shipped", sub: "Kernel · VOID · Folio" },
+  { value: 3, suffix: "", label: "Products in development", sub: "Kernel · Folio · Gridline" },
   { value: 1, suffix: "", label: "Shared runtime", sub: "One substrate underneath" },
   { value: 100, suffix: "%", label: "Self-hosted", sub: "No one else's infrastructure" },
 ];
@@ -86,7 +86,7 @@ function LeadershipPage() {
             <p className="mx-auto mt-7 max-w-lg text-lg leading-relaxed text-muted-foreground">
               Substrate is built by a small team that works close to the code across{" "}
               <RotatingText
-                words={["Kernel", "VOID", "Folio"]}
+                words={["Kernel", "Folio", "Gridline"]}
                 className="font-medium text-foreground"
               />
               . Every product is held to the same standard: complete, working, and accountable to
@@ -149,7 +149,7 @@ function LeadershipPage() {
                 <BoxReveal>Close to the code</BoxReveal>
               </h3>
               <TextGradientFill
-                text="Vidit Sharma founded Substrate and leads research, product, and engineering across Kernel, VOID, and Folio. He works close to the code — the studio's own site was rebuilt from the ground up, moved off its original scaffolding onto an independent, self-hosted stack, with every build verified clean before shipping. That's the standard applied across all three products: complete, working, and accountable to no one else's infrastructure."
+                text="Vidit Sharma founded Substrate and leads research, product, and engineering across Kernel, Folio, and Gridline. He works close to the code — across model research, product systems, and the interfaces that connect them. The same standard applies across all three products: complete, working, and accountable."
                 className="mt-7 text-base leading-relaxed text-muted-foreground"
               />
 

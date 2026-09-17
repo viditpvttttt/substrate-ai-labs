@@ -15,7 +15,6 @@ import { Route as GridlineRouteImport } from './routes/gridline'
 import { Route as KernelRouteImport } from './routes/kernel'
 import { Route as LeadershipRouteImport } from './routes/leadership'
 import { Route as StudioRouteImport } from './routes/studio'
-import { Route as ToolsRouteImport } from './routes/tools'
 import { Route as WorkIndexRouteImport } from './routes/work.index'
 import { Route as WorkSlugRouteImport } from './routes/work.$slug'
 
@@ -49,11 +48,6 @@ const StudioRoute = StudioRouteImport.update({
   path: '/studio',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ToolsRoute = ToolsRouteImport.update({
-  id: '/tools',
-  path: '/tools',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const WorkIndexRoute = WorkIndexRouteImport.update({
   id: '/work/',
   path: '/work/',
@@ -72,7 +66,6 @@ export interface FileRoutesByFullPath {
   '/kernel': typeof KernelRoute
   '/leadership': typeof LeadershipRoute
   '/studio': typeof StudioRoute
-  '/tools': typeof ToolsRoute
   '/work/$slug': typeof WorkSlugRoute
   '/work/': typeof WorkIndexRoute
 }
@@ -83,7 +76,6 @@ export interface FileRoutesByTo {
   '/kernel': typeof KernelRoute
   '/leadership': typeof LeadershipRoute
   '/studio': typeof StudioRoute
-  '/tools': typeof ToolsRoute
   '/work/$slug': typeof WorkSlugRoute
   '/work': typeof WorkIndexRoute
 }
@@ -95,7 +87,6 @@ export interface FileRoutesById {
   '/kernel': typeof KernelRoute
   '/leadership': typeof LeadershipRoute
   '/studio': typeof StudioRoute
-  '/tools': typeof ToolsRoute
   '/work/$slug': typeof WorkSlugRoute
   '/work/': typeof WorkIndexRoute
 }
@@ -108,7 +99,6 @@ export interface FileRouteTypes {
     | '/kernel'
     | '/leadership'
     | '/studio'
-    | '/tools'
     | '/work/$slug'
     | '/work/'
   fileRoutesByTo: FileRoutesByTo
@@ -119,7 +109,6 @@ export interface FileRouteTypes {
     | '/kernel'
     | '/leadership'
     | '/studio'
-    | '/tools'
     | '/work/$slug'
     | '/work'
   id:
@@ -130,7 +119,6 @@ export interface FileRouteTypes {
     | '/kernel'
     | '/leadership'
     | '/studio'
-    | '/tools'
     | '/work/$slug'
     | '/work/'
   fileRoutesById: FileRoutesById
@@ -142,7 +130,6 @@ export interface RootRouteChildren {
   KernelRoute: typeof KernelRoute
   LeadershipRoute: typeof LeadershipRoute
   StudioRoute: typeof StudioRoute
-  ToolsRoute: typeof ToolsRoute
   WorkSlugRoute: typeof WorkSlugRoute
   WorkIndexRoute: typeof WorkIndexRoute
 }
@@ -191,13 +178,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof StudioRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/tools': {
-      id: '/tools'
-      path: '/tools'
-      fullPath: '/tools'
-      preLoaderRoute: typeof ToolsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/work/': {
       id: '/work/'
       path: '/work'
@@ -222,7 +202,6 @@ const rootRouteChildren: RootRouteChildren = {
   KernelRoute: KernelRoute,
   LeadershipRoute: LeadershipRoute,
   StudioRoute: StudioRoute,
-  ToolsRoute: ToolsRoute,
   WorkSlugRoute: WorkSlugRoute,
   WorkIndexRoute: WorkIndexRoute,
 }

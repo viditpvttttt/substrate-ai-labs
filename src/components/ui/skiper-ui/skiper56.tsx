@@ -80,7 +80,7 @@ function VanishForm({
     for (let y = 0; y < off.height; y += step) {
       for (let x = 0; x < off.width; x += step) {
         const i = (y * off.width + x) * 4;
-        if (data[i + 3] > 128) {
+        if ((data[i + 3] ?? 0) > 128) {
           particlesRef.current.push({
             x: x + (Math.random() - 0.5) * 2,
             y: y + (Math.random() - 0.5) * 2,

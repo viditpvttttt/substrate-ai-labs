@@ -24,7 +24,7 @@ export function HeroField() {
       </svg>
       <motion.div
         className="hero-field-scan"
-        animate={reduceMotion ? undefined : { x: ["-20%", "120%"] }}
+        {...(!reduceMotion ? { animate: { x: ["-20%", "120%"] } } : {})}
         transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
       />
     </div>

@@ -56,7 +56,7 @@ export function CanvasCrowd({
       vx: (Math.random() - 0.5) * 0.35,
       vy: (Math.random() - 0.5) * 0.35,
       r: 1 + Math.random() * 2.2,
-      color: COLORS[Math.floor(Math.random() * COLORS.length)],
+      color: COLORS[Math.floor(Math.random() * COLORS.length)] ?? COLORS[0] ?? "currentColor",
     }));
 
     const onMove = (e: PointerEvent) => {
