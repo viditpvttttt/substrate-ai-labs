@@ -3,7 +3,7 @@ import { Float, Line } from "@react-three/drei";
 import { useEffect, useMemo, useRef, useState } from "react";
 import * as THREE from "three";
 
-const spectral = ["#ff5f8f", "#715cff", "#28c8d8", "#ffd35a"];
+const spectral = ["#ff5f8f", "#715cff", "#28c8d8", "#ffd35a"] as const;
 
 function OrbitalSystem() {
   const group = useRef<THREE.Group>(null);
@@ -38,7 +38,7 @@ function OrbitalSystem() {
       {points.map((point, index) => (
         <mesh key={index} position={point.clone().multiplyScalar(1.62)}>
           <sphereGeometry args={[index % 7 === 0 ? 0.035 : 0.018, 12, 12]} />
-          <meshBasicMaterial color={spectral[index % spectral.length]} />
+          <meshBasicMaterial color={spectral[index % spectral.length] ?? spectral[0]} />
         </mesh>
       ))}
       {[0, 1, 2].map((ring) => (
@@ -48,7 +48,7 @@ function OrbitalSystem() {
             const angle = (i / 64) * Math.PI * 2;
             return [Math.cos(angle) * (1.78 + ring * 0.08), Math.sin(angle) * (1.78 + ring * 0.08), 0] as [number, number, number];
           })}
-          color={spectral[ring]}
+          color={spectral[ring] ?? spectral[0]}
           transparent
           opacity={0.36}
           lineWidth={1}
