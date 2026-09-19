@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link } from "@tanstack/react-router";
-import { Github, Instagram, Linkedin, Menu, X, Youtube } from "lucide-react";
+import { ArrowUpRight, Github, Instagram, Linkedin, Menu, X, Youtube } from "lucide-react";
 import { BrandLogo, type BrandVariant } from "@/components/BrandLogo";
 import { FlipText } from "@/components/anim/FlipLink";
 import { Button } from "@/components/ui/button";
@@ -18,12 +18,12 @@ export function SiteHeader() {
   const [open, setOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-40 w-full border-b border-border/60 bg-background/70 backdrop-blur-xl">
+    <header className="sticky top-0 z-40 w-full border-b border-border/60 bg-background/85 backdrop-blur-xl">
       <div
         className="h-px w-full bg-gradient-to-r from-transparent via-[var(--spectral-b)]/40 to-transparent"
         aria-hidden="true"
       />
-      <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-6">
+      <div className="mx-auto flex h-[4.5rem] max-w-7xl items-center justify-between px-6">
         <Link
           to="/"
           className="group flex items-center gap-2.5 transition-opacity duration-300 hover:opacity-80"
@@ -32,9 +32,9 @@ export function SiteHeader() {
             variant="substrate"
             className="h-6 w-6 rounded-full transition-transform duration-300 group-hover:scale-110"
           />
-          <span className="rule-label !text-foreground">Substrate</span>
+          <span className="text-sm font-semibold text-foreground">Substrate</span>
         </Link>
-        <nav className="hidden items-center gap-4 md:flex lg:gap-6">
+        <nav className="hidden items-center gap-5 md:flex lg:gap-7">
           {nav.map((item) => (
             <Link
               key={item.to}
@@ -51,14 +51,15 @@ export function SiteHeader() {
                   }`}
                 />
               )}
-              <FlipText text={item.label} />
+               <FlipText text={item.label} />
               <span
                 className="absolute -bottom-1 left-0 h-px w-0 bg-foreground transition-all duration-300 group-hover:w-full"
                 aria-hidden="true"
               />
             </Link>
           ))}
-        </nav>
+          <a href="mailto:hello@substrate.dev" className="ml-1 inline-flex items-center gap-1.5 rounded-full bg-primary px-4 py-2 text-xs font-medium text-primary-foreground transition-transform hover:-translate-y-0.5">Talk to us <ArrowUpRight className="size-3" /></a>
+         </nav>
         <Button
           variant="ghost"
           size="icon"
@@ -101,42 +102,31 @@ const socials = [
 
 export function SiteFooter() {
   return (
-    <footer className="relative isolate overflow-hidden border-t border-border/70 bg-card/30">
-      <div className="mx-auto max-w-6xl px-6 py-16">
-        <div className="flex flex-col gap-12 sm:flex-row sm:items-start sm:justify-between">
-          <div className="flex items-center gap-2.5">
+    <footer className="relative isolate overflow-hidden border-t border-border bg-background">
+      <div className="mx-auto max-w-7xl px-6 pb-8 pt-20">
+        <div className="grid gap-12 border-b border-border pb-16 md:grid-cols-[1.5fr_repeat(3,1fr)]">
+          <div>
+            <div className="flex items-center gap-2.5">
             <BrandLogo variant="substrate" className="h-6 w-6 rounded-full" />
             <div>
-              <p className="rule-label">Substrate</p>
-              <p className="mt-1.5 max-w-xs text-xs leading-relaxed text-muted-foreground">
-                The layer underneath everything we build — quiet, local-first, one runtime.
-              </p>
+              <p className="text-sm font-semibold">Substrate</p>
             </div>
           </div>
-          <nav className="flex flex-wrap gap-x-8 gap-y-3">
-            {nav.map((item) => (
-              <Link
-                key={item.to}
-                to={item.to}
-                className="text-sm text-muted-foreground transition-colors duration-300 hover:text-foreground"
-              >
-                {item.label}
-              </Link>
-            ))}
-          </nav>
+            <p className="mt-5 max-w-xs text-sm leading-relaxed text-muted-foreground">A research and product studio building the shared layer beneath intelligent software.</p>
+          </div>
+          <FooterColumn title="Products" links={nav.slice(0, 3)} />
+          <FooterColumn title="Company" links={nav.slice(3)} />
+          <div>
+            <p className="rule-label">Connect</p>
+            <a href="mailto:hello@substrate.dev" className="mt-5 inline-flex items-center gap-2 text-sm text-foreground">hello@substrate.dev <ArrowUpRight className="size-3.5" /></a>
+            <nav className="mt-6 flex flex-wrap gap-1" aria-label="Social media">
+              {socials.map((social) => { const Icon = social.icon; return <a key={social.label} href={social.href} target="_blank" rel="noreferrer" aria-label={social.label} className="social-link">{Icon ? <Icon className="size-4" /> : <span className="text-xs font-semibold">{social.text}</span>}</a>; })}
+            </nav>
+          </div>
         </div>
-        <div className="mt-14 flex flex-col gap-3 border-t border-border/60 pt-6 sm:flex-row sm:items-center sm:justify-between">
-          <p className="text-xs text-muted-foreground">Substrate — Kernel · Folio · Gridline</p>
-          <nav className="flex items-center gap-1" aria-label="Social media">
-            {socials.map((social) => {
-              const Icon = social.icon;
-              return (
-                <a key={social.label} href={social.href} target="_blank" rel="noreferrer" aria-label={social.label} className="social-link">
-                  {Icon ? <Icon className="size-4" /> : <span className="text-xs font-semibold">{social.text}</span>}
-                </a>
-              );
-            })}
-          </nav>
+        <div className="flex flex-col gap-3 py-7 text-xs text-muted-foreground sm:flex-row sm:items-center sm:justify-between">
+          <p>Substrate — Kernel · Folio · Gridline</p>
+          <p>Built with intent. Measured, not claimed.</p>
         </div>
       </div>
 
@@ -144,4 +134,8 @@ export function SiteFooter() {
       <div className="spectral-base" aria-hidden="true" />
     </footer>
   );
+}
+
+function FooterColumn({ title, links }: { title: string; links: typeof nav }) {
+  return <div><p className="rule-label">{title}</p><nav className="mt-5 flex flex-col items-start gap-3">{links.map((item) => <Link key={item.to} to={item.to} className="text-sm text-muted-foreground transition-colors hover:text-foreground">{item.label}</Link>)}</nav></div>;
 }
