@@ -101,7 +101,7 @@ const socials = [
 
 export function SiteFooter() {
   return (
-    <footer className="relative isolate overflow-hidden border-t border-border bg-background">
+    <footer className="site-footer relative isolate overflow-hidden border-t border-border/40">
       <div className="mx-auto max-w-7xl px-6 pb-8 pt-20">
         <div className="grid gap-12 border-b border-border pb-16 md:grid-cols-[1.5fr_repeat(3,1fr)]">
           <div>
@@ -129,8 +129,8 @@ export function SiteFooter() {
         </div>
       </div>
 
-      {/* Chromatic base band — the RGB ambience settling at the foot of the page */}
-      <div className="spectral-base" aria-hidden="true" />
+      {/* Warm spectral wash — the gradient that settles at the foot of the page */}
+      <div className="site-footer-wash" aria-hidden="true" />
     </footer>
   );
 }

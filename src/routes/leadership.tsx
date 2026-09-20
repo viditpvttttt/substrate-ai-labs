@@ -12,7 +12,7 @@ import { CountUp } from "@/components/anim/CountUp";
 import { HoverExpand } from "@/components/anim/HoverExpand";
 import type { HoverExpandItem } from "@/components/anim/HoverExpand";
 import { wavePalettes } from "@/components/WaveGridBackground";
-import portraitAsset from "@/assets/vidit-sharma-portrait.jpeg.asset.json";
+
 
 export const Route = createFileRoute("/leadership")({
   head: () => ({
@@ -122,7 +122,7 @@ function LeadershipPage() {
               <ParallaxY from={30} to={-30}>
                 <TiltCard className="overflow-hidden rounded-2xl border border-border/70 bg-card/60 shadow-sm">
                   <img
-                    src={portraitAsset.url}
+                    src="/images/vidit-portrait.jpg"
                     alt="Portrait of Vidit Sharma, Founder and CEO of Substrate"
                     className="aspect-[4/5] h-auto w-full object-cover"
                   />
