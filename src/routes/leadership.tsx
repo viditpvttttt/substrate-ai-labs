@@ -4,7 +4,6 @@ import { TiltCard } from "@/components/TiltCard";
 import { BoxReveal } from "@/components/anim/BoxReveal";
 import { ScrambleText } from "@/components/anim/ScrambleText";
 import { WordsReveal } from "@/components/anim/WordsReveal";
-import { RotatingText } from "@/components/anim/RotatingText";
 import { Spotlight } from "@/components/anim/Spotlight";
 import { ParallaxY } from "@/components/anim/ParallaxY";
 import { TextGradientFill } from "@/components/anim/TextGradientFill";
@@ -85,12 +84,7 @@ function LeadershipPage() {
           </h1>
           <Reveal delay={0.6}>
             <p className="mx-auto mt-7 max-w-lg text-lg leading-relaxed text-muted-foreground">
-              Substrate is built by a small team that works close to the code across{" "}
-              <RotatingText
-                words={["Kernel", "Folio", "Gridline"]}
-                className="font-medium text-foreground"
-              />
-              . Every product is held to the same standard: complete, working, and accountable to
+              Substrate is built by a small team that works close to the code across Kernel, Folio, and Gridline. Every product is held to the same standard: complete, working, and accountable to
               no one else's infrastructure.
             </p>
           </Reveal>

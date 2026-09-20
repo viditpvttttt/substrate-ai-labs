@@ -4,12 +4,13 @@ import { Reveal } from "@/components/Reveal";
 import { BrandLogo } from "@/components/BrandLogo";
 import { SpectralGlobe } from "@/components/SpectralGlobe";
 import { MediaFeature } from "@/components/MediaFeature";
+import { GrowthGraph } from "@/components/GrowthGraph";
 import { MagneticButton } from "@/components/anim/MagneticButton";
 import { WordsReveal } from "@/components/anim/WordsReveal";
 import { works } from "@/components/work/workData";
 import videoPortrait from "@/assets/substrate-motion-portrait.mp4.asset.json";
 import videoSquare from "@/assets/substrate-motion-square.mp4.asset.json";
-import { ArrowRight, AudioLines, Braces, Eye, Layers3 } from "lucide-react";
+import { ArrowRight, AudioLines, Braces, Eye, Layers3, Network, ScanSearch, Sparkles, Workflow } from "lucide-react";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -33,24 +34,13 @@ export const Route = createFileRoute("/")({
   component: Index,
 });
 
-const marqueeTerms = [
-  "Multimodal",
-  "Autonomous agents",
-  "Local-first",
-  "One runtime",
-  "Shared memory",
-  "Long context",
-  "Ambient computing",
-  "No translators",
-];
-
 function Index() {
   return (
     <>
       <section className="hero-lab relative isolate overflow-hidden border-b border-border">
         <div className="technical-grid absolute inset-0 opacity-70" aria-hidden="true" />
         <div className="spectral-field spectral-field-soft" aria-hidden="true" />
-        <div className="relative mx-auto grid min-h-[calc(100svh-4.5rem)] max-w-7xl items-center gap-8 px-6 py-14 lg:grid-cols-12 lg:py-20">
+        <div className="relative mx-auto grid min-h-[calc(100svh-4.5rem)] max-w-7xl items-center gap-4 px-6 pb-10 pt-16 lg:grid-cols-12 lg:py-16">
           <div className="relative z-10 lg:col-span-7">
             <motion.div
               initial={{ opacity: 0, y: 16 }}
@@ -61,7 +51,7 @@ function Index() {
               <BrandLogo variant="substrate" className="h-9 w-9 rounded-full" />
               <span className="rule-label">Research and product studio</span>
             </motion.div>
-            <h1 className="max-w-3xl text-6xl leading-[0.92] text-foreground sm:text-7xl lg:text-[7.5rem]">
+            <h1 className="max-w-4xl text-6xl leading-[0.9] text-foreground sm:text-7xl lg:text-[7rem]">
               <WordsReveal text="Intelligence needs" delay={0.15} />
               <br />
               <em><WordsReveal text="better ground." delay={0.45} /></em>
@@ -101,25 +91,13 @@ function Index() {
               </MagneticButton>
             </motion.div>
           </div>
-          <motion.div initial={{ opacity: 0, scale: 0.94 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 1, delay: 0.35 }} className="relative lg:col-span-5"><SpectralGlobe /><div className="absolute bottom-8 left-0 rounded-md border border-border bg-background/80 px-4 py-3 shadow-lg backdrop-blur-xl"><p className="rule-label">One shared context</p><p className="mt-1 text-sm">Text · vision · audio · code</p></div></motion.div>
+          <motion.div initial={{ opacity: 0, scale: 0.94 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 1, delay: 0.35 }} className="relative lg:col-span-5"><SpectralGlobe /></motion.div>
         </div>
       </section>
 
-      {/* Terms strip */}
-      <section className="overflow-hidden border-y border-border/70 bg-card/60 py-4" aria-hidden="true">
-        <div className="marquee-track [animation-play-state:running] hover:[animation-play-state:paused]">
-          {[0, 1].map((copy) => (
-            <div key={copy} className="flex shrink-0 items-center">
-              {marqueeTerms.map((t) => (
-                <span
-                  key={`${copy}-${t}`}
-                  className="mx-8 font-mono text-[0.625rem] uppercase tracking-[0.18em] text-muted-foreground"
-                >
-                  {t}
-                </span>
-              ))}
-            </div>
-          ))}
+      <section className="section-rule mx-auto max-w-7xl px-6 py-10">
+        <div className="grid gap-8 md:grid-cols-4">
+          {[{ value: "03", label: "Products, one runtime" }, { value: "05", label: "Native modalities" }, { value: "01", label: "Shared memory layer" }, { value: "∞", label: "Room to compound" }].map((stat, index) => <Reveal key={stat.label} delay={index * .05} className="border-l border-border pl-5"><p className="text-3xl">{stat.value}</p><p className="mt-2 text-sm text-muted-foreground">{stat.label}</p></Reveal>)}
         </div>
       </section>
 
@@ -128,6 +106,11 @@ function Index() {
         <div className="mt-14 grid gap-4 md:grid-cols-12">
           {works.map((work, i) => <Reveal key={work.slug} delay={i * .08} className={i === 0 ? "md:col-span-7" : i === 1 ? "md:col-span-5" : "md:col-span-12"}><Link to={i === 0 ? "/kernel" : i === 1 ? "/folio" : "/gridline"} className={`spectral-card group flex min-h-[24rem] flex-col justify-between rounded-md p-8 ${i === 2 ? "md:min-h-[20rem]" : ""}`}><div className="relative z-10 flex items-center justify-between"><BrandLogo variant={work.logo} className={`h-11 w-11 object-contain ${work.logo === "kernel" ? "w-16" : ""}`} /><span className="rule-label">0{i + 1}</span></div><div className="relative z-10 max-w-xl"><h3 className="text-4xl sm:text-5xl">{work.name}</h3><p className="mt-4 max-w-md text-sm leading-relaxed text-muted-foreground">{work.lede}</p><span className="mt-7 inline-flex items-center gap-2 text-sm">Explore {work.name}<ArrowRight className="size-4 transition-transform group-hover:translate-x-1" /></span></div></Link></Reveal>)}
         </div>
+      </section>
+
+      <section className="section-rule mx-auto max-w-7xl px-6 py-24 sm:py-32">
+        <Reveal><p className="rule-label">A compounding platform</p><h2 className="mt-5 max-w-3xl text-4xl leading-[1.02] sm:text-6xl">Every new capability strengthens the whole system.</h2></Reveal>
+        <div className="mt-14"><GrowthGraph /></div>
       </section>
 
       <section className="section-rule bg-card/45">
@@ -139,7 +122,16 @@ function Index() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-7xl px-6 py-24 sm:py-32"><Reveal><p className="rule-label">In motion</p><h2 className="mt-5 max-w-2xl text-4xl leading-tight sm:text-5xl">Interfaces that explain themselves by moving.</h2></Reveal><div className="mt-12 grid gap-4 lg:grid-cols-[.78fr_1.22fr]"><MediaFeature src={videoPortrait.url} label="Product study 01" title="A vertical interface built for continuous attention." portrait /><MediaFeature src={videoSquare.url} label="Product study 02" title="Motion as feedback, not decoration." /></div></section>
+      <section className="mx-auto max-w-7xl px-6 py-24 sm:py-32"><Reveal><p className="rule-label">Our vision</p><h2 className="mt-5 max-w-3xl text-4xl leading-tight sm:text-6xl">Computers should perceive more of the world—and ask less of you.</h2><p className="mt-6 max-w-2xl leading-relaxed text-muted-foreground">We are building toward software that can see, listen, reason, and act across the same context. The interface becomes quieter as the intelligence underneath becomes more complete.</p></Reveal><div className="mt-12 grid gap-4 lg:grid-cols-[1.18fr_.82fr]"><MediaFeature src={videoSquare.url} label="Vision study" title="An interface that learns to see." /><MediaFeature src={videoPortrait.url} label="Human expression" title="Intelligence with texture, memory, and point of view." portrait /></div></section>
+
+      <section className="section-rule bg-card/45">
+        <div className="mx-auto max-w-7xl px-6 py-24 sm:py-32">
+          <Reveal><p className="rule-label">How the substrate works</p><h2 className="mt-5 max-w-3xl text-4xl leading-tight sm:text-6xl">One foundation. Specialized experiences.</h2></Reveal>
+          <div className="mt-14 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+            {[{ icon: ScanSearch, title: "Perceive", body: "Images, voice, video, documents, and live interfaces enter one shared context." }, { icon: Network, title: "Connect", body: "Memory and tools remain available across products instead of resetting at every surface." }, { icon: Workflow, title: "Act", body: "Agents move from understanding to useful work with visible plans and controlled execution." }, { icon: Sparkles, title: "Improve", body: "Every interaction becomes evidence for a more capable, more coherent system." }].map(({ icon: Icon, title, body }, index) => <Reveal key={title} delay={index * .06} className="ambient-card"><Icon className="size-5"/><div><span className="rule-label">0{index + 1}</span><h3 className="mt-3 text-3xl">{title}</h3><p className="mt-4 text-sm leading-relaxed text-muted-foreground">{body}</p></div></Reveal>)}
+          </div>
+        </div>
+      </section>
 
       <section className="section-rule relative isolate overflow-hidden"><div className="spectral-field spectral-field-soft" aria-hidden="true"/><Reveal className="relative mx-auto max-w-4xl px-6 py-28 text-center sm:py-36"><p className="rule-label">Build on better ground</p><h2 className="mt-6 text-5xl leading-tight sm:text-7xl">The next interface starts underneath.</h2><p className="mx-auto mt-6 max-w-lg text-muted-foreground">Explore how Substrate turns one shared runtime into three distinct products.</p><Link to="/studio" className="mt-9 inline-flex items-center gap-2 rounded-full bg-primary px-7 py-3 text-sm font-medium text-primary-foreground">Inside the studio <ArrowRight className="size-4" /></Link></Reveal>
       </section>
