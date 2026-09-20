@@ -465,6 +465,14 @@
 .globe-signal-two { bottom: 24%; left: 2%; }
 .globe-signal-three { right: 6%; bottom: 8%; }
 
+@media (max-width: 640px) {
+  .spectral-globe { min-height: 21rem; }
+  .globe-signal { font-size: .5625rem; }
+  .globe-signal-one { right: .75rem; }
+  .globe-signal-two { left: .75rem; }
+  .globe-signal-three { right: .75rem; }
+}
+
 .spectral-card { position: relative; overflow: hidden; border: 1px solid var(--border); background: color-mix(in oklab, var(--background) 91%, transparent); box-shadow: 0 24px 80px color-mix(in oklab, var(--spectral-b) 8%, transparent), inset 0 1px var(--background); }
 .spectral-card::before { content: ""; position: absolute; inset: 35% -20% -58%; pointer-events: none; filter: blur(30px) saturate(130%); opacity: .68; background: radial-gradient(circle at 20% 70%, color-mix(in oklab, var(--spectral-b) 68%, transparent), transparent 45%), radial-gradient(circle at 58% 42%, color-mix(in oklab, var(--spectral-r) 68%, transparent), transparent 48%), radial-gradient(circle at 92% 74%, color-mix(in oklab, var(--spectral-warm) 65%, transparent), transparent 48%); transition: transform .8s cubic-bezier(.22,1,.36,1), opacity .5s ease; }
 .spectral-card::after { content: ""; position: absolute; inset: 0; pointer-events: none; opacity: .18; background-image: radial-gradient(color-mix(in oklab, var(--foreground) 30%, transparent) .45px, transparent .45px); background-size: 3px 3px; mix-blend-mode: multiply; }

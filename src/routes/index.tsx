@@ -6,7 +6,6 @@ import { SpectralGlobe } from "@/components/SpectralGlobe";
 import { MediaFeature } from "@/components/MediaFeature";
 import { GrowthGraph } from "@/components/GrowthGraph";
 import { MagneticButton } from "@/components/anim/MagneticButton";
-import { WordsReveal } from "@/components/anim/WordsReveal";
 import { works } from "@/components/work/workData";
 import videoPortrait from "@/assets/substrate-motion-portrait.mp4.asset.json";
 import videoSquare from "@/assets/substrate-motion-square.mp4.asset.json";
@@ -40,7 +39,7 @@ function Index() {
       <section className="hero-lab relative isolate overflow-hidden border-b border-border">
         <div className="technical-grid absolute inset-0 opacity-70" aria-hidden="true" />
         <div className="spectral-field spectral-field-soft" aria-hidden="true" />
-        <div className="relative mx-auto grid min-h-[calc(100svh-4.5rem)] max-w-7xl items-center gap-4 px-6 pb-10 pt-16 lg:grid-cols-12 lg:py-16">
+        <div className="relative mx-auto grid min-h-[46rem] max-w-7xl items-center gap-4 px-6 py-16 lg:grid-cols-12 lg:py-20">
           <div className="relative z-10 lg:col-span-7">
             <motion.div
               initial={{ opacity: 0, y: 16 }}
@@ -51,11 +50,9 @@ function Index() {
               <BrandLogo variant="substrate" className="h-9 w-9 rounded-full" />
               <span className="rule-label">Research and product studio</span>
             </motion.div>
-            <h1 className="max-w-4xl text-6xl leading-[0.9] text-foreground sm:text-7xl lg:text-[7rem]">
-              <WordsReveal text="Intelligence needs" delay={0.15} />
-              <br />
-              <em><WordsReveal text="better ground." delay={0.45} /></em>
-            </h1>
+            <motion.h1 initial={{ opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: .9, delay: .12, ease: [0.22, 1, 0.36, 1] }} className="max-w-4xl text-6xl leading-[0.9] text-foreground sm:text-7xl lg:text-[7rem]">
+              Intelligence needs<br /><em>better ground.</em>
+            </motion.h1>
             <motion.p
               initial={{ opacity: 0, y: 18 }}
               animate={{ opacity: 1, y: 0 }}
