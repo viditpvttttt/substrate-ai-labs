@@ -2,7 +2,6 @@ import { useState } from "react";
 import { Link } from "@tanstack/react-router";
 import { ArrowUpRight, Github, Instagram, Linkedin, Menu, X, Youtube } from "lucide-react";
 import { BrandLogo, type BrandVariant } from "@/components/BrandLogo";
-import { FlipText } from "@/components/anim/FlipLink";
 import { Button } from "@/components/ui/button";
 
 const nav: { to: string; label: string; mark?: BrandVariant }[] = [
@@ -51,7 +50,7 @@ export function SiteHeader() {
                   }`}
                 />
               )}
-               <FlipText text={item.label} />
+               <span>{item.label}</span>
               <span
                 className="absolute -bottom-1 left-0 h-px w-0 bg-foreground transition-all duration-300 group-hover:w-full"
                 aria-hidden="true"
