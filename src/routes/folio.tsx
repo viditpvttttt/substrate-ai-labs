@@ -2,9 +2,8 @@ import { createFileRoute } from "@tanstack/react-router";
 import { BrandLogo } from "@/components/BrandLogo";
 import { Reveal } from "@/components/Reveal";
 import { BoxReveal } from "@/components/anim/BoxReveal";
-import { HoverExpand } from "@/components/anim/HoverExpand";
-import { wavePalettes } from "@/components/WaveGridBackground";
-import type { WavePalette } from "@/components/WaveGridBackground";
+import { FieldCard } from "@/components/cards/FieldCard";
+import { SudoFigure, sudo } from "@/components/sudo/SudoFigure";
 
 export const Route = createFileRoute("/folio")({
   head: () => ({
@@ -28,46 +27,41 @@ export const Route = createFileRoute("/folio")({
   component: FolioPage,
 });
 
-const capabilities: {
-  index: string;
-  title: string;
-  body: string;
-  colors: WavePalette;
-}[] = [
+const capabilities = [
   {
     index: "01",
     title: "Weather, properly",
-    colors: wavePalettes.gold,
+    accent: "#d99a4a",
     body: "Live conditions for anywhere on earth, rendered as a card you actually want to look at — hour by hour, what to wear, when the rain lands.",
   },
   {
     index: "02",
     title: "News you choose",
-    colors: wavePalettes.violet,
+    accent: "#a55cff",
     body: "Pick your own topics — from world to formula 1 — and Folio keeps a quiet, self-refreshing feed. No algorithm deciding what matters.",
   },
   {
     index: "03",
     title: "Memory that sticks",
-    colors: wavePalettes.teal,
+    accent: "#2dd4a8",
     body: "Tell it once. Your city, your tone, your stack — editable and deletable line by line, never a shadow profile you cannot see.",
   },
   {
     index: "04",
     title: "Workbench",
-    colors: wavePalettes.blue,
+    accent: "#6085ff",
     body: "A real editor and your files, with an AI pair-programmer that reads and writes in place while you talk it through.",
   },
   {
     index: "05",
     title: "Work mode",
-    colors: wavePalettes.forest,
+    accent: "#4dc37f",
     body: "Meeting prep, standups, one-pagers, slide outlines and email drafts — it arrives at the meeting already briefed.",
   },
   {
     index: "06",
     title: "Deep research",
-    colors: wavePalettes.magenta,
+    accent: "#ff00ea",
     body: "It browses, reads and synthesises multiple sources with citations, instead of guessing from stale training data.",
   },
 ];
@@ -124,17 +118,21 @@ function FolioPage() {
           <h2 className="max-w-xl text-3xl leading-tight text-foreground sm:text-4xl">
             <BoxReveal>Six things, done unusually well.</BoxReveal>
           </h2>
-          <Reveal className="mt-14">
-            <HoverExpand
-              items={capabilities.map((c) => ({
-                key: c.index,
-                index: c.index,
-                title: c.title,
-                body: c.body,
-                colors: c.colors,
-              }))}
-            />
-          </Reveal>
+          <div className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {capabilities.map((c, i) => (
+              <Reveal key={c.index} delay={i * 0.06} className="h-full">
+                <FieldCard
+                  index={c.index}
+                  title={c.title}
+                  copy={c.body}
+                  accent={c.accent}
+                  badge="Folio"
+                  className="h-full"
+                  style={{ minHeight: "16rem" }}
+                />
+              </Reveal>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -173,7 +171,7 @@ function FolioPage() {
       </section>
 
       <section className="border-y border-border/70 bg-card/60 grain-veil">
-        <div className="relative mx-auto grid max-w-5xl gap-14 px-6 py-24 sm:py-28 lg:grid-cols-2">
+        <div className="relative mx-auto grid max-w-5xl items-center gap-14 px-6 py-24 sm:py-28 lg:grid-cols-[1.15fr_0.7fr_1.15fr]">
           <div>
             <h2 className="text-3xl leading-tight text-foreground sm:text-4xl">
               Privacy first, with you in control
@@ -184,6 +182,7 @@ function FolioPage() {
               Folio for Work adds the guardrails teams need, like SSO and admin controls.
             </p>
           </div>
+          <SudoFigure src={sudo.security.src} alt={sudo.security.alt} caption="Sudo holds the keys" className="mx-auto w-full max-w-[13rem]" />
           <ul className="divide-y divide-border border-y border-border">
             {privacy.map(([k, v]) => (
               <li

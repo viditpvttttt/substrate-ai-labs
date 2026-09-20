@@ -3,15 +3,13 @@ import { motion } from "motion/react";
 import { Reveal } from "@/components/Reveal";
 import { BrandLogo } from "@/components/BrandLogo";
 import { ContinentGlobe } from "@/components/globe/ContinentGlobe";
+import { SandyRing } from "@/components/SandyRing";
 import { GrowthGraph } from "@/components/GrowthGraph";
 import { MagneticButton } from "@/components/anim/MagneticButton";
-import { ScrollExpand } from "@/components/anim/ScrollExpand";
 import { AuraCard } from "@/components/home/AuraCard";
 import { CapabilityBento } from "@/components/home/CapabilityBento";
-import { ArchitectureStack } from "@/components/home/ArchitectureStack";
 import { ResearchNotes } from "@/components/home/ResearchNotes";
 import { works } from "@/components/work/workData";
-import { SpectralGlobe } from "@/components/SpectralGlobe";
 import { ArrowRight, AudioLines, Braces, Eye, Layers3, Network, ScanSearch, Sparkles, Workflow } from "lucide-react";
 
 export const Route = createFileRoute("/")({
@@ -36,7 +34,16 @@ export const Route = createFileRoute("/")({
   component: Index,
 });
 
-const modalities = ["Text", "Vision", "Audio", "Video", "Code", "Tools", "Memory", "Agents"];
+const modalities = [
+  { label: "Text", dot: "#6085ff" },
+  { label: "Vision", dot: "#a55cff" },
+  { label: "Audio", dot: "#ff00ea" },
+  { label: "Video", dot: "#ff6767" },
+  { label: "Code", dot: "#ff9f60" },
+  { label: "Tools", dot: "#4dc37f" },
+  { label: "Memory", dot: "#d99a4a" },
+  { label: "Agents", dot: "#8f6bff" },
+];
 
 const productGlows: Record<string, { glow: string; glow2: string }> = {
   kernel: { glow: "#d99a4a", glow2: "#ff9f60" },
@@ -44,14 +51,20 @@ const productGlows: Record<string, { glow: string; glow2: string }> = {
   gridline: { glow: "#ff00ea", glow2: "#6085ff" },
 };
 
+const globeSignals = [
+  { dot: "#6085ff", label: "Live traffic arcs", body: "Signals traced between hubs, moving with the turn." },
+  { dot: "#ff00ea", label: "Drag to spin", body: "The globe carries your momentum and settles back." },
+  { dot: "#ff9f60", label: "One shared memory", body: "Every product reads and writes the same ground." },
+];
+
 function Index() {
   return (
     <>
       <section className="hero-lab relative isolate overflow-hidden border-b border-border">
         <div className="technical-grid absolute inset-0 opacity-70" aria-hidden="true" />
         <div className="spectral-field spectral-field-soft" aria-hidden="true" />
-        <div className="relative mx-auto max-w-7xl px-6 pt-16 lg:pt-20">
-          <div className="grid items-center gap-4 lg:grid-cols-12">
+        <div className="relative mx-auto max-w-7xl px-6 pb-16 pt-16 lg:pb-20 lg:pt-20">
+          <div className="grid items-center gap-8 lg:grid-cols-12">
             <div className="relative z-10 lg:col-span-7">
               <motion.div
                 initial={{ opacity: 0, y: 16 }}
@@ -63,7 +76,7 @@ function Index() {
                 <span className="rule-label">Research and product studio</span>
               </motion.div>
               <motion.h1 initial={{ opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: .9, delay: .12, ease: [0.22, 1, 0.36, 1] }} className="max-w-4xl text-6xl leading-[0.9] text-foreground sm:text-7xl lg:text-[7rem]">
-                Intelligence needs<br /><em>better ground.</em>
+                Intelligence needs<br /><em className="rgb-text">better ground.</em>
               </motion.h1>
               <motion.p
                 initial={{ opacity: 0, y: 18 }}
@@ -100,47 +113,85 @@ function Index() {
                 </MagneticButton>
               </motion.div>
             </div>
-            <motion.div initial={{ opacity: 0, scale: 0.94 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 1, delay: 0.35 }} className="relative lg:col-span-5"><ContinentGlobe /></motion.div>
-          </div>
 
-          {/* Human expression — the studio's motion identity, playing in the hero */}
-          <motion.div
-            initial={{ opacity: 0, y: 28 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.55, ease: [0.22, 1, 0.36, 1] }}
-            className="relative mb-16 mt-14 overflow-hidden rounded-lg border border-border shadow-[0_40px_110px_-30px_rgba(96,133,255,0.35)] lg:mb-20"
-          >
-            <video src="/videos/human-expression.mp4" autoPlay muted loop playsInline className="h-[26rem] w-full object-cover sm:h-[34rem] lg:h-[42rem]" aria-label="Substrate — Human expression" />
-            <div className="absolute inset-0 bg-gradient-to-t from-background/85 via-background/5 to-background/15" aria-hidden="true" />
-            <div className="absolute bottom-0 left-0 max-w-xl p-7 sm:p-10">
-              <p className="rule-label">Human expression</p>
-              <p className="mt-3 font-display text-3xl leading-tight text-foreground sm:text-5xl">Intelligence with texture, memory, and point of view.</p>
+            {/* The ambient runtime, playing in the hero */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.96 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 1, delay: 0.35 }}
+              className="relative lg:col-span-5"
+            >
+              <div className="gradient-border relative overflow-hidden rounded-2xl border border-border bg-card shadow-[0_44px_120px_-32px_rgba(96,133,255,0.4)]">
+                <video
+                  src="/videos/substrate-flow.mp4"
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  className="aspect-[4/5] w-full object-cover"
+                  aria-label="Substrate — the ambient runtime in motion"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-background/45 via-transparent to-background/10" aria-hidden="true" />
+                <span className="frame-chip left-4 top-4">ambient runtime</span>
+                <span className="frame-chip bottom-4 right-4"><span className="pulse-dot" style={{ "--dot": "#4dc37f" } as React.CSSProperties} /> live</span>
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* The globe, in the place the video used to hold — with room to breathe */}
+      <section className="relative isolate overflow-hidden border-b border-border">
+        <div className="spectral-field spectral-field-soft" aria-hidden="true" />
+        <div className="relative mx-auto grid max-w-7xl items-center gap-12 px-6 py-20 lg:grid-cols-2 lg:py-28">
+          <Reveal>
+            <p className="rule-label">Human expression</p>
+            <h2 className="mt-5 max-w-xl text-4xl leading-[1.05] text-foreground sm:text-6xl">
+              Intelligence with texture, memory, and point of view.
+            </h2>
+            <p className="mt-6 max-w-md leading-relaxed text-muted-foreground">
+              This is the network as we see it: land dense with signal, quiet space in between,
+              traffic traced between the places where the work happens. Drag it. It keeps your
+              momentum, then settles back into its slow, grounded turn.
+            </p>
+            <div className="mt-9 space-y-4">
+              {globeSignals.map((signal, i) => (
+                <Reveal key={signal.label} delay={0.1 + i * 0.06} className="flex items-start gap-3.5">
+                  <span className="pulse-dot mt-1.5" style={{ "--dot": signal.dot } as React.CSSProperties} />
+                  <div>
+                    <p className="text-sm font-medium text-foreground">{signal.label}</p>
+                    <p className="text-sm text-muted-foreground">{signal.body}</p>
+                  </div>
+                </Reveal>
+              ))}
             </div>
-            <div className="absolute right-6 top-6 rounded-full border border-foreground/10 bg-background/70 px-4 py-1.5 font-mono text-[0.625rem] uppercase tracking-[0.18em] text-foreground/80 backdrop-blur">Substrate · 2026</div>
+          </Reveal>
+          <motion.div initial={{ opacity: 0, scale: 0.94 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 1, delay: 0.2 }}>
+            <ContinentGlobe />
           </motion.div>
         </div>
       </section>
 
-      <section className="section-rule mx-auto max-w-7xl px-6 py-10">
+      <section className="mx-auto max-w-7xl px-6 py-10">
         <div className="grid gap-8 md:grid-cols-4">
           {[{ value: "03", label: "Products, one runtime" }, { value: "05", label: "Native modalities" }, { value: "01", label: "Shared memory layer" }, { value: "∞", label: "Room to compound" }].map((stat, index) => <Reveal key={stat.label} delay={index * .05} className="border-l border-border pl-5"><p className="text-3xl">{stat.value}</p><p className="mt-2 text-sm text-muted-foreground">{stat.label}</p></Reveal>)}
         </div>
       </section>
 
-      <div className="marquee-fade overflow-hidden border-b border-border/70 py-5" aria-label="Native modalities">
-        <div className="marquee-track">
-          {[0, 1].map((copy) => (
-            <div key={copy} className="flex shrink-0 items-center" aria-hidden={copy === 1}>
-              {modalities.map((m) => (
-                <span key={m} className="flex items-center">
-                  <span className="px-7 font-mono text-xs uppercase tracking-[0.28em] text-muted-foreground">{m}</span>
-                  <span className="size-1 rounded-full bg-border" aria-hidden="true" />
-                </span>
-              ))}
-            </div>
+      {/* Native modalities — a quiet strip, no marquee */}
+      <section className="border-y border-border/70">
+        <div className="mx-auto flex max-w-7xl flex-wrap items-center gap-x-7 gap-y-3 px-6 py-8">
+          <p className="rule-label">Native modalities</p>
+          {modalities.map((m, i) => (
+            <Reveal key={m.label} delay={i * 0.04} className="group inline-flex items-center gap-2.5">
+              <span className="pulse-dot" style={{ "--dot": m.dot } as React.CSSProperties} />
+              <span className="font-mono text-xs uppercase tracking-[0.22em] text-muted-foreground transition-colors group-hover:text-foreground">
+                {m.label}
+              </span>
+            </Reveal>
           ))}
         </div>
-      </div>
+      </section>
 
       <section className="mx-auto max-w-7xl px-6 py-24 sm:py-32">
         <Reveal><p className="rule-label">The system</p><h2 className="mt-5 max-w-3xl text-4xl leading-[1.02] text-foreground sm:text-6xl">Three products. One continuous layer.</h2></Reveal>
@@ -163,9 +214,8 @@ function Index() {
                         <BrandLogo variant={work.logo} className={`h-11 w-11 object-contain ${work.logo === "kernel" ? "w-16" : ""}`} />
                       </div>
                     }
-                  >
-                    <p className="max-w-md pt-6 text-sm leading-relaxed text-muted-foreground">{work.lede}</p>
-                  </AuraCard>
+                    copy={<p className="max-w-md pt-6 text-sm leading-relaxed text-muted-foreground">{work.lede}</p>}
+                  />
                 </Link>
               </Reveal>
             );
@@ -180,10 +230,6 @@ function Index() {
         <div className="mt-14"><GrowthGraph /></div>
       </section>
 
-      <ScrollExpand className="overflow-hidden rounded-3xl">
-        <ArchitectureStack />
-      </ScrollExpand>
-
       <section className="section-rule bg-card/45">
         <div className="mx-auto grid max-w-7xl gap-12 px-6 py-24 lg:grid-cols-[.75fr_1.25fr] lg:py-32">
           <Reveal><p className="rule-label">Multimodal by design</p><h2 className="mt-5 text-4xl leading-tight sm:text-5xl">The world does not arrive as text alone.</h2><p className="mt-6 max-w-md leading-relaxed text-muted-foreground">Kernel keeps text, images, sound, video, and tools in one conversation and one context.</p></Reveal>
@@ -193,14 +239,21 @@ function Index() {
         </div>
       </section>
 
+      {/* Our vision — the sandy orbit */}
       <section className="mx-auto max-w-7xl px-6 py-24 sm:py-32">
         <div className="grid items-center gap-12 lg:grid-cols-2">
           <Reveal>
             <p className="rule-label">Our vision</p>
             <h2 className="mt-5 max-w-xl text-4xl leading-tight sm:text-6xl">Computers should perceive more of the world—and ask less of you.</h2>
             <p className="mt-6 max-w-md leading-relaxed text-muted-foreground">We are building toward software that can see, listen, reason, and act across the same context. The interface becomes quieter as the intelligence underneath becomes more complete.</p>
+            <p className="mt-4 max-w-md leading-relaxed text-muted-foreground">The ring beside this is what that feels like — thousands of small, deliberate motions settling into one calm orbit. Nothing shouts; everything holds.</p>
+            <div className="mt-8 flex flex-wrap gap-2.5">
+              {["See", "Listen", "Reason", "Act"].map((word, i) => (
+                <span key={word} className="rounded-full border border-border bg-card/60 px-4 py-1.5 text-sm text-muted-foreground transition-all duration-300 hover:scale-105 hover:border-foreground/30 hover:text-foreground" style={{ transitionDelay: `${i * 20}ms` }}>{word}</span>
+              ))}
+            </div>
           </Reveal>
-          <Reveal delay={0.12}><SpectralGlobe /></Reveal>
+          <Reveal delay={0.12}><SandyRing /></Reveal>
         </div>
       </section>
 
@@ -210,10 +263,7 @@ function Index() {
           <div className="mt-14 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
             {[{ icon: ScanSearch, glow: "#6085ff", title: "Perceive", body: "Images, voice, video, documents, and live interfaces enter one shared context." }, { icon: Network, glow: "#a55cff", title: "Connect", body: "Memory and tools remain available across products instead of resetting at every surface." }, { icon: Workflow, glow: "#ff00ea", title: "Act", body: "Agents move from understanding to useful work with visible plans and controlled execution." }, { icon: Sparkles, glow: "#ff9f60", title: "Improve", body: "Every interaction becomes evidence for a more capable, more coherent system." }].map(({ icon: Icon, glow, title, body }, index) => (
               <Reveal key={title} delay={index * .06} className="h-full">
-                <AuraCard title={title} badge={`0${index + 1}`} glow={glow} glow2="#ff9f60" className="h-full" style={{ minHeight: "21rem" }}>
-                  <Icon className="size-5" />
-                  <p className="pt-6 text-sm leading-relaxed text-muted-foreground">{body}</p>
-                </AuraCard>
+                <AuraCard title={title} badge={`0${index + 1}`} glow={glow} glow2="#ff9f60" className="h-full" style={{ minHeight: "21rem" }} visual={<Icon className="size-5" />} copy={<p className="pt-6 text-sm leading-relaxed text-muted-foreground">{body}</p>} />
               </Reveal>
             ))}
           </div>
@@ -225,7 +275,7 @@ function Index() {
         <Reveal className="relative mx-auto max-w-5xl px-6 py-28 text-center sm:py-36">
           <p className="rule-label">Why we build</p>
           <blockquote className="mt-8 font-display text-4xl leading-[1.1] text-foreground sm:text-6xl">
-            “Software should feel like it understands the work — <em>not the other way around.</em>”
+            “Software should feel like it understands the work — <em className="rgb-text not-italic">not the other way around.</em>”
           </blockquote>
           <div className="mt-10 flex items-center justify-center gap-3.5">
             <img src="/images/vidit-portrait.jpg" alt="Vidit Sharma" className="h-11 w-11 rounded-full object-cover ring-1 ring-border" />
@@ -239,7 +289,7 @@ function Index() {
 
       <ResearchNotes />
 
-      <section className="section-rule relative isolate overflow-hidden"><div className="spectral-field spectral-field-soft" aria-hidden="true"/><Reveal className="relative mx-auto max-w-4xl px-6 py-28 text-center sm:py-36"><p className="rule-label">Build on better ground</p><h2 className="mt-6 text-5xl leading-tight sm:text-7xl">The next interface starts underneath.</h2><p className="mx-auto mt-6 max-w-lg text-muted-foreground">Explore how Substrate turns one shared runtime into three distinct products.</p><Link to="/studio" className="mt-9 inline-flex items-center gap-2 rounded-full bg-primary px-7 py-3 text-sm font-medium text-primary-foreground">Inside the studio <ArrowRight className="size-4" /></Link></Reveal>
+      <section className="section-rule relative isolate overflow-hidden"><div className="spectral-field spectral-field-soft" aria-hidden="true"/><Reveal className="relative mx-auto max-w-4xl px-6 py-28 text-center sm:py-36"><p className="rule-label">Build on better ground</p><h2 className="mt-6 text-5xl leading-tight sm:text-7xl">The next interface starts <em className="rgb-text not-italic">underneath.</em></h2><p className="mx-auto mt-6 max-w-lg text-muted-foreground">Explore how Substrate turns one shared runtime into three distinct products.</p><Link to="/studio" className="btn-shine mt-9 inline-flex items-center gap-2 rounded-full bg-primary px-7 py-3 text-sm font-medium text-primary-foreground">Inside the studio <ArrowRight className="size-4" /></Link></Reveal>
       </section>
     </>
   );

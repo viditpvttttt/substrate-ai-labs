@@ -4,6 +4,7 @@ import { BenchRadar } from "@/components/BenchRadar";
 import { Reveal } from "@/components/Reveal";
 import { BoxReveal } from "@/components/anim/BoxReveal";
 import { ScrambleText } from "@/components/anim/ScrambleText";
+import { SudoFigure, sudo } from "@/components/sudo/SudoFigure";
 
 export const Route = createFileRoute("/kernel")({
   head: () => ({
@@ -62,6 +63,9 @@ function KernelPage() {
             Kernel is a multimodal LLM chatbot — one conversation across text, images, audio and
             video in a single context, one representation instead of a stack of translators.
           </p>
+          <div className="mx-auto mt-10 w-40">
+            <SudoFigure src={sudo.multitask.src} alt={sudo.multitask.alt} caption="Sudo, mid-thread" />
+          </div>
         </Reveal>
       </section>
 

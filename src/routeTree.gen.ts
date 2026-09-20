@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as CookiesRouteImport } from './routes/cookies'
 import { Route as FolioRouteImport } from './routes/folio'
 import { Route as GridlineRouteImport } from './routes/gridline'
 import { Route as KernelRouteImport } from './routes/kernel'
@@ -21,6 +22,11 @@ import { Route as WorkSlugRouteImport } from './routes/work.$slug'
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CookiesRoute = CookiesRouteImport.update({
+  id: '/cookies',
+  path: '/cookies',
   getParentRoute: () => rootRouteImport,
 } as any)
 const FolioRoute = FolioRouteImport.update({
@@ -61,6 +67,7 @@ const WorkSlugRoute = WorkSlugRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/cookies': typeof CookiesRoute
   '/folio': typeof FolioRoute
   '/gridline': typeof GridlineRoute
   '/kernel': typeof KernelRoute
@@ -71,6 +78,7 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/cookies': typeof CookiesRoute
   '/folio': typeof FolioRoute
   '/gridline': typeof GridlineRoute
   '/kernel': typeof KernelRoute
@@ -82,6 +90,7 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/cookies': typeof CookiesRoute
   '/folio': typeof FolioRoute
   '/gridline': typeof GridlineRoute
   '/kernel': typeof KernelRoute
@@ -94,6 +103,7 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/cookies'
     | '/folio'
     | '/gridline'
     | '/kernel'
@@ -104,6 +114,7 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/cookies'
     | '/folio'
     | '/gridline'
     | '/kernel'
@@ -114,6 +125,7 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
+    | '/cookies'
     | '/folio'
     | '/gridline'
     | '/kernel'
@@ -125,6 +137,7 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  CookiesRoute: typeof CookiesRoute
   FolioRoute: typeof FolioRoute
   GridlineRoute: typeof GridlineRoute
   KernelRoute: typeof KernelRoute
@@ -141,6 +154,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/cookies': {
+      id: '/cookies'
+      path: '/cookies'
+      fullPath: '/cookies'
+      preLoaderRoute: typeof CookiesRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/folio': {
@@ -197,6 +217,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  CookiesRoute: CookiesRoute,
   FolioRoute: FolioRoute,
   GridlineRoute: GridlineRoute,
   KernelRoute: KernelRoute,

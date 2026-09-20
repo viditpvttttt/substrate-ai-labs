@@ -1,8 +1,9 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { ArrowUpRight, Check, Layers, Network, ShieldCheck, Workflow } from "lucide-react";
+import { ArrowUpRight, Check, Layers, Network, Rocket, ShieldCheck, Workflow } from "lucide-react";
 import { CodeLattice } from "@/components/gridline/CodeLattice";
 import { Reveal } from "@/components/Reveal";
 import { AuraCard } from "@/components/home/AuraCard";
+import { SudoFigure, sudo } from "@/components/sudo/SudoFigure";
 import { Button } from "@/components/ui/button";
 
 export const Route = createFileRoute("/gridline")({
@@ -69,9 +70,8 @@ function GridlinePage() {
                 className="h-full"
                 style={{ minHeight: "18rem" }}
                 footer={<p className="text-sm leading-relaxed text-muted-foreground">{item.body}</p>}
-              >
-                <item.icon className="size-5" />
-              </AuraCard>
+                visual={<item.icon className="size-5" />}
+              />
             </Reveal>
           ))}
         </div>
@@ -88,6 +88,33 @@ function GridlinePage() {
         </div>
       </section>
 
+      <section className="section-rule mx-auto max-w-6xl px-6 py-24 sm:py-28">
+        <div className="grid items-center gap-14 lg:grid-cols-[0.85fr_1.15fr]">
+          <Reveal className="mx-auto w-full max-w-[16rem]">
+            <SudoFigure src={sudo.deploy.src} alt={sudo.deploy.alt} caption="Sudo ships on Fridays" />
+          </Reveal>
+          <Reveal delay={0.1}>
+            <p className="rule-label">From plan to production</p>
+            <h2 className="mt-5 max-w-xl text-3xl leading-tight text-foreground sm:text-5xl">
+              The repository is the launch pad, not the bottleneck.
+            </h2>
+            <p className="mt-6 max-w-lg leading-relaxed text-muted-foreground">
+              A plan that a human can read, diffs that stay small enough to review, checks that run
+              before anything merges — and automations that keep the whole loop running while you
+              sleep. Gridline was built for the last mile of software: the part where verified work
+              actually leaves the ground.
+            </p>
+            <div className="mt-8 flex flex-wrap gap-2.5">
+              {["Automations", "Review queues", "18/18 checks"].map((chip, i) => (
+                <span key={chip} className="inline-flex items-center gap-2 rounded-full border border-border bg-card/60 px-4 py-1.5 text-sm text-muted-foreground transition-all duration-300 hover:scale-105 hover:border-foreground/30 hover:text-foreground" style={{ transitionDelay: `${i * 20}ms` }}>
+                  <Rocket className="size-3.5" /> {chip}
+                </span>
+              ))}
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
       <section className="mx-auto max-w-6xl px-6 py-16">
         <div className="grid gap-8 md:grid-cols-3">
           {evidence.map((stat, index) => <Reveal key={stat.label} delay={index * 0.05} className="border-l border-border pl-5"><p className="text-3xl">{stat.value}</p><p className="mt-2 text-sm text-muted-foreground">{stat.label}</p></Reveal>)}
@@ -97,7 +124,7 @@ function GridlinePage() {
       <section className="section-rule relative isolate overflow-hidden">
         <div className="relative mx-auto max-w-6xl px-6 py-24 sm:py-32">
           <Reveal>
-            <div className="tile-aurora grain-veil relative overflow-hidden rounded-lg p-10 text-center sm:p-16" style={{ "--tile-a": "#d8f3dc", "--tile-b": "#ffcd89", "--tile-c": "#ff85a2" } as React.CSSProperties}>
+            <div className="tile-aurora grain-veil relative overflow-hidden rounded-lg p-10 text-center sm:p-16" style={{ "--tile-a": "#fde8d8", "--tile-b": "#ffd9ec", "--tile-c": "#d9e6ff" } as React.CSSProperties}>
               <div className="relative z-10">
                 <p className="rule-label">Build with context intact</p>
                 <h2 className="mx-auto mt-6 max-w-2xl text-4xl leading-tight text-foreground sm:text-6xl">Give ambitious work a better surface.</h2>

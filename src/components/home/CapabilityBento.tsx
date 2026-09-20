@@ -138,9 +138,8 @@ export function CapabilityBento() {
                   Running on one substrate
                 </span>
               }
-            >
-              {card.visual}
-            </AuraCard>
+              visual={card.visual}
+            />
           </Reveal>
         ))}
       </div>

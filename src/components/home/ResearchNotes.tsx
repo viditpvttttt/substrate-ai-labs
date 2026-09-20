@@ -1,5 +1,6 @@
 import { ArrowUpRight } from "lucide-react";
 import { Reveal } from "@/components/Reveal";
+import { SudoFigure, sudo } from "@/components/sudo/SudoFigure";
 
 const notes = [
   { date: "Sep 2026", tag: "Research", title: "Grounding agents in repository structure, not chunks" },
@@ -11,10 +12,16 @@ const notes = [
 export function ResearchNotes() {
   return (
     <section className="section-rule mx-auto max-w-7xl px-6 py-24 sm:py-32">
-      <Reveal>
-        <p className="rule-label">From the studio</p>
-        <h2 className="mt-5 max-w-3xl text-4xl leading-[1.02] text-foreground sm:text-6xl">Research, in the open.</h2>
-      </Reveal>
+      <div className="relative">
+        <Reveal>
+          <p className="rule-label">From the studio</p>
+          <h2 className="mt-5 max-w-3xl text-4xl leading-[1.02] text-foreground sm:text-6xl">Research, in the open.</h2>
+          <p className="mt-5 max-w-md text-sm leading-relaxed text-muted-foreground">Sudo reads everything twice and files the good parts. Come read along — method attached, no hand-waving.</p>
+        </Reveal>
+        <div className="pointer-events-none absolute -top-8 right-0 hidden w-40 xl:block" aria-hidden="true">
+          <SudoFigure src={sudo.research.src} alt="" />
+        </div>
+      </div>
       <div className="mt-14 border-t border-border">
         {notes.map((note, index) => (
           <Reveal key={note.title} delay={index * 0.05}>

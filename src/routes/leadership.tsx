@@ -9,9 +9,8 @@ import { ParallaxY } from "@/components/anim/ParallaxY";
 import { TextGradientFill } from "@/components/anim/TextGradientFill";
 import { MagneticButton } from "@/components/anim/MagneticButton";
 import { CountUp } from "@/components/anim/CountUp";
-import { HoverExpand } from "@/components/anim/HoverExpand";
-import type { HoverExpandItem } from "@/components/anim/HoverExpand";
-import { wavePalettes } from "@/components/WaveGridBackground";
+import { FieldCard } from "@/components/cards/FieldCard";
+import { SudoFigure, sudo } from "@/components/sudo/SudoFigure";
 
 
 export const Route = createFileRoute("/leadership")({
@@ -42,27 +41,24 @@ const stats = [
   { value: 100, suffix: "%", label: "Self-hosted", sub: "No one else's infrastructure" },
 ];
 
-const values: HoverExpandItem[] = [
+const values = [
   {
-    key: "complete",
     index: "01",
     title: "Complete",
+    accent: "#a55cff",
     body: "Nothing half-built. If it ships, it works end to end — the model, the browser, the surface.",
-    colors: wavePalettes.violet,
   },
   {
-    key: "working",
     index: "02",
     title: "Working",
+    accent: "#2dd4a8",
     body: "Every build verified clean — the site, the model, the browser. Reproducible or it doesn't ship.",
-    colors: wavePalettes.teal,
   },
   {
-    key: "accountable",
     index: "03",
     title: "Accountable",
+    accent: "#ff00ea",
     body: "No one else's infrastructure. The runtime is ours — moved off its original scaffolding onto an independent, self-hosted stack.",
-    colors: wavePalettes.magenta,
   },
 ];
 
@@ -175,19 +171,37 @@ function LeadershipPage() {
         </div>
       </section>
 
-      {/* Values — skiper-style hover-expand panels */}
+      {/* Values — the standard, with Sudo keeping score */}
       <section className="mx-auto max-w-5xl px-6 py-24 sm:py-28">
-        <Reveal>
-          <h2 className="max-w-xl text-3xl leading-tight text-foreground sm:text-4xl">
-            <BoxReveal>How we build</BoxReveal>
-          </h2>
-          <p className="mt-5 max-w-md text-base leading-relaxed text-muted-foreground">
-            The standard applied across all three products — hover to explore.
-          </p>
-        </Reveal>
-        <Reveal delay={0.15} className="mt-14">
-          <HoverExpand items={values} />
-        </Reveal>
+        <div className="grid items-end gap-10 lg:grid-cols-[1.4fr_0.6fr]">
+          <Reveal>
+            <h2 className="max-w-xl text-3xl leading-tight text-foreground sm:text-4xl">
+              <BoxReveal>How we build</BoxReveal>
+            </h2>
+            <p className="mt-5 max-w-md text-base leading-relaxed text-muted-foreground">
+              The standard applied across all three products. Sudo checks every box twice — we only
+              print what survives the audit.
+            </p>
+          </Reveal>
+          <Reveal delay={0.12} className="mx-auto w-full max-w-[12rem] lg:mb-1">
+            <SudoFigure src={sudo.success.src} alt={sudo.success.alt} />
+          </Reveal>
+        </div>
+        <div className="mt-12 grid gap-4 md:grid-cols-3">
+          {values.map((v, i) => (
+            <Reveal key={v.index} delay={0.1 + i * 0.06} className="h-full">
+              <FieldCard
+                index={v.index}
+                title={v.title}
+                copy={v.body}
+                accent={v.accent}
+                badge="Standard"
+                className="h-full"
+                style={{ minHeight: "15rem" }}
+              />
+            </Reveal>
+          ))}
+        </div>
       </section>
     </>
   );

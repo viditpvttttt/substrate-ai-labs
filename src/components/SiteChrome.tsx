@@ -3,6 +3,7 @@ import { Link } from "@tanstack/react-router";
 import { ArrowUpRight, Github, Instagram, Linkedin, Menu, X, Youtube } from "lucide-react";
 import { BrandLogo, type BrandVariant } from "@/components/BrandLogo";
 import { Button } from "@/components/ui/button";
+import { Reveal } from "@/components/Reveal";
 
 const nav: { to: string; label: string; mark?: BrandVariant }[] = [
   { to: "/kernel", label: "Kernel", mark: "kernel" },
@@ -102,6 +103,7 @@ const socials = [
 export function SiteFooter() {
   return (
     <footer className="site-footer relative isolate overflow-hidden border-t border-border/40">
+      <div className="footer-spectrum" aria-hidden="true" />
       <div className="mx-auto max-w-7xl px-6 pb-8 pt-20">
         <div className="grid gap-12 border-b border-border pb-16 md:grid-cols-[1.5fr_repeat(3,1fr)]">
           <div>
@@ -123,9 +125,16 @@ export function SiteFooter() {
             </nav>
           </div>
         </div>
-        <div className="flex flex-col gap-3 py-7 text-xs text-muted-foreground sm:flex-row sm:items-center sm:justify-between">
+        <Reveal className="overflow-hidden py-12">
+          <p className="footer-wordmark select-none" aria-hidden="true">Substrate</p>
+        </Reveal>
+        <div className="flex flex-col gap-3 border-t border-border py-7 text-xs text-muted-foreground sm:flex-row sm:items-center sm:justify-between">
           <p>Substrate — Kernel · Folio · Gridline</p>
-          <p>Built with intent. Measured, not claimed.</p>
+          <div className="flex flex-wrap items-center gap-x-5 gap-y-2">
+            <Link to="/cookies" className="footer-link-hover inline-block hover:text-foreground">Cookies</Link>
+            <span aria-hidden="true" className="hidden sm:inline">·</span>
+            <p>Built with intent. Measured, not claimed.</p>
+          </div>
         </div>
       </div>
 

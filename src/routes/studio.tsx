@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { SignalDoodle } from "@/components/SignalDoodle";
 import { Reveal } from "@/components/Reveal";
 import { BoxReveal } from "@/components/anim/BoxReveal";
+import { StudioJournal } from "@/components/studio/StudioExtras";
 
 export const Route = createFileRoute("/studio")({
   head: () => ({
@@ -173,7 +174,11 @@ function StudioPage() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-2xl px-6 py-24 text-center sm:py-28">
+      <StudioJournal />
+
+      <section className="section-rule relative isolate overflow-hidden">
+        <div className="spectral-field spectral-field-soft" aria-hidden="true" />
+        <Reveal className="relative mx-auto max-w-2xl px-6 py-24 text-center sm:py-28">
         <h2 className="text-3xl leading-tight text-foreground sm:text-4xl">
           Early, and open to company
         </h2>
@@ -183,10 +188,11 @@ function StudioPage() {
         </p>
         <a
           href="mailto:hello@substrate.dev"
-          className="mt-9 inline-block rounded-full bg-primary px-7 py-3 text-sm font-medium text-primary-foreground transition-opacity hover:opacity-90"
+          className="btn-shine mt-9 inline-block rounded-full bg-primary px-7 py-3 text-sm font-medium text-primary-foreground transition-opacity hover:opacity-90"
         >
           Get in touch
         </a>
+        </Reveal>
       </section>
     </>
   );

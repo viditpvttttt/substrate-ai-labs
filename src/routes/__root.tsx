@@ -16,21 +16,41 @@ import { ScrollProgress } from "@/components/anim/ScrollProgress";
 
 function NotFoundComponent() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background px-4">
-      <div className="max-w-md text-center">
-        <h1 className="text-7xl font-bold text-foreground">404</h1>
-        <h2 className="mt-4 text-xl font-semibold text-foreground">Page not found</h2>
-        <p className="mt-2 text-sm text-muted-foreground">
-          The page you're looking for doesn't exist or has been moved.
-        </p>
-        <div className="mt-6">
-          <Link
-            to="/"
-            className="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
-          >
-            Go home
-          </Link>
+    <div className="relative isolate overflow-hidden">
+      <div className="spectral-field spectral-field-soft" aria-hidden="true" />
+      <div className="relative mx-auto grid max-w-5xl items-center gap-10 px-6 py-24 sm:py-32 lg:grid-cols-[1fr_1.1fr]">
+        <div>
+          <p className="rule-label">Error 404 · off the map</p>
+          <h1 className="mt-6 text-6xl leading-[0.95] text-foreground sm:text-8xl">
+            Nothing on <em className="rgb-text not-italic">this</em> route.
+          </h1>
+          <p className="mt-6 max-w-md text-base leading-relaxed text-muted-foreground">
+            Sudo checked the signpost twice — the page you asked for does not exist, or has moved
+            somewhere quieter. The rest of the substrate is very much still here.
+          </p>
+          <div className="mt-9 flex flex-wrap gap-3">
+            <Link
+              to="/"
+              className="btn-shine inline-flex items-center justify-center rounded-full bg-primary px-6 py-2.5 text-sm font-medium text-primary-foreground transition-colors hover:opacity-90"
+            >
+              Back home
+            </Link>
+            <Link
+              to="/work"
+              className="inline-flex items-center justify-center rounded-full border border-border bg-card/60 px-6 py-2.5 text-sm font-medium text-foreground transition-colors hover:bg-card"
+            >
+              Explore the work
+            </Link>
+          </div>
         </div>
+        <figure className="mx-auto w-full max-w-sm">
+          <img
+            src="/images/sudo/sudo-404.png"
+            alt="Sudo, the Substrate mascot, studying a signpost through a magnifying glass"
+            className="h-auto w-full object-contain mix-blend-multiply"
+            style={{ animation: "sudo-float 7s ease-in-out infinite" }}
+          />
+        </figure>
       </div>
     </div>
   );
